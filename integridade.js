@@ -1,21 +1,21 @@
 
-import fs from 'fs';
-import crypto from 'crypto';
+
 
 function verificarIntegridade() {
     // Ler o arquivo JavaScript
-    const arquivoJS = fs.readFileSync('urnaEletronica.js');
+    let arquivoJS = 'urnaEletronica.js';
+    let hashDoArquivo = aesjs.utils.utf8.toBytes(arquivoJS);
 
     
 
    
 // Criar um hash SHA-256 do arquivo
-    const hash = crypto.createHash('sha256');
-    hash.update(arquivoJS);
-    const hashDoArquivo = hash.digest('hex');
+   // const hash = crypto.createHash('sha256');
+    //hash.update(arquivoJS);
+    //const hashDoArquivo = hash.digest('hex');
 
     // Comparar o hash com um valor conhecido ou esperado
-    const hashEsperado = '440546da871ff51d35718a9565db4ccf8318cdbe71a5c4f047c87abed9ce9cc7';
+    const hashEsperado = '4471f8f6864b543ec16f8ff65392f36336b2b86917cf1e4d400f81a203a96381f';
 
 
     if (hashDoArquivo === hashEsperado) {
