@@ -1,12 +1,35 @@
+function dataHoraInicial(){
+    const date = new Date().toLocaleDateString();
+    document.getElementById("data").innerHTML = "Data de Votação " + date;
+    const time = new Date().toLocaleTimeString();
+    document.getElementById("hora").innerHTML = "Horário da Votação " + time;
+}
+
+function dataHoraFinal(){
+    const date2 = new Date().toLocaleDateString();
+    document.getElementById("data2").innerHTML = "Data de Votação " + date2;
+    const time2 = new Date().toLocaleTimeString();
+    document.getElementById("hora2").innerHTML = "Horário da Votação " + time2;
+}
+
+
+    
 function urnaEletronica() {
     
     //Código do programa
+
+    dataHoraInicial();
+    
+    
+    
+    
 
     const nomeDoCandidato1 = String(prompt("Digite o nome do Candidato 1: "));
     const nomeDoCandidato2 = String(prompt("Digite o nome do Candidato 2: "));
     const nomeDoCandidato3 = String(prompt("Digite o nome do Candidato 3: "));
     
-
+   
+    
 
     if (confirm("Os nomes dos candidatos estão corretos?" + nomeDoCandidato1 + " | " + nomeDoCandidato2 + " | " + nomeDoCandidato3)) {
     } else {
@@ -81,18 +104,35 @@ function urnaEletronica() {
                     console.log("Voto Nulo = " + totalVotosNulo);
 
                     const totalVotos = (totalVotosCandidato1+totalVotosCandidato2+totalVotosCandidato3+totalVotosEmBranco+totalVotosNulo);
-
+                    
+                    
                     document.getElementById("resultado").innerHTML = "Total de votos Válidos " + totalVotos;
                     document.getElementById("resultado1").innerHTML = nomeDoCandidato1 + " = " + totalVotosCandidato1 + " Votos que representa " + (totalVotosCandidato1/totalVotos*100).toFixed(2) + "% dos votos";
                     document.getElementById("resultado2").innerHTML = nomeDoCandidato2 + " = " + totalVotosCandidato2 + " Votos que representa " + (totalVotosCandidato2/totalVotos*100).toFixed(2) + "% dos votos";
                     document.getElementById("resultado3").innerHTML = nomeDoCandidato3 + " = " + totalVotosCandidato3 + " Votos que representa " + (totalVotosCandidato3/totalVotos*100).toFixed(2) + "% dos votos";
                     document.getElementById("resultado4").innerHTML = "Votos Branco = " + totalVotosEmBranco + " Votos que representa " + (totalVotosEmBranco/totalVotos*100).toFixed(2) + "% dos votos";
                     document.getElementById("resultado5").innerHTML = "Votos Nulo = " + totalVotosNulo + " Votos que representa " +(totalVotosNulo/totalVotos*100).toFixed(2) + "% dos votos";
-                                                         
+                    
+                    
+                   dataHoraFinal();
+                    
                                     
                     break;
                    
                 }
         }while(voto != 123);
+
+
+        
+        
+                    
 }
+
+                
+                    
+                   
+               
+                    
+
+                    
 
