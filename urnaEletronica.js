@@ -57,7 +57,16 @@ function urnaEletronica() {
                 
             do {
 
-                          
+                 
+                if(alert(`O número do seu candidato e
+                            |1| para ${nomeDoCandidato1}
+                            |2| para ${nomeDoCandidato2}
+                            |3| para ${nomeDoCandidato3}
+                            |5| para Voto em Branco`))
+
+
+
+
                 voto = parseInt(prompt("Digite o seu voto : "));
 
                 
