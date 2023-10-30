@@ -12,11 +12,44 @@ function dataHoraFinal(){
     document.getElementById("hora2").innerHTML = "Horário da Votação " + time2;
 }
 
+function verificaUrnaAtual(){
 
+    fetch('urnaEletronica.js')
+        .then(reponse => reponse.text())
+        .then(response => CryptoJS.SHA256(response).toString())
+        .then(hashUrnaAtual => {
+           fetch('hashValido') 
+           .then(reponse => reponse.text())
+           .then(hashValido => {
+            if(hashUrnaAtual === hashValido){
+                console.log('Urna Verificada, código íntegro.')
+            } else {
+                console.log('URN ADULTERADA! HASHES NÃO CONFEREM!')
+                console.log(`HASH DA URNA: ${hashUrnaAtual}`);
+                console.log(`HASH ESPERADO: ${hashValido}`);
+            }
+           })
+        });
+}
+
+let
+            voto,
+            totalVotosCandidato1 = 0,
+            totalVotosCandidato2 = 0,
+            totalVotosCandidato3 = 0,
+            totalVotosEmBranco = 0,
+            senhaMesario = 0,
+            totalVotosNulo = 0;
     
 function urnaEletronica() {
     
     //Código do programa
+
+    do {
+        senhaMesario = parseInt(prompt("Digite a senha do mesario"));
+    }while(confirm("Está cer de que será sua senha?") != true);
+
+    
 
     dataHoraInicial();
     
@@ -38,35 +71,10 @@ function urnaEletronica() {
         const nomeDoCandidato3 = String(prompt("Digite o nome do Candidato 3: "));
     }
 
-
-    let
-            voto,
-            totalVotosCandidato1 = 0,
-            totalVotosCandidato2 = 0,
-            totalVotosCandidato3 = 0,
-            totalVotosEmBranco = 0,
-            totalVotosNulo = 0;
-            
-            
-        console.clear();
-        console.log("Iniciando o Programa:");
-        console.log("|1| " + nomeDoCandidato1);
-        console.log("|2| " + nomeDoCandidato2);
-        console.log("|3| " + nomeDoCandidato3);
-        console.log("Voto em branco   = |5|");
-                
+               
             do {
 
-                 
-                if(alert(`O número do seu candidato e
-                            |1| para ${nomeDoCandidato1}
-                            |2| para ${nomeDoCandidato2}
-                            |3| para ${nomeDoCandidato3}
-                            |5| para Voto em Branco`))
-
-
-
-
+               
                 voto = parseInt(prompt("Digite o seu voto : "));
 
                 
@@ -93,45 +101,48 @@ function urnaEletronica() {
                     totalVotosEmBranco++;
                     console.log("Voto em Branco = " + totalVotosEmBranco);
                     break;
-                    
+                    case senhaMesario: 
+                        resposta = String(prompt("Tem certeza que deseja terminar a votação?"));
+                        break;
+                     
+
                     default: 
-                    if (confirm("Seu voto será anulado!")) {
+                    confirm("Seu voto será anulado!")
                         totalVotosNulo++;
                         console.log("Voto Nulo = " + totalVotosNulo);
-                    } else {
-                    break;
-                    return;
-                    }
-                    
-                    
-                    
-                    case 123:
-                    console.log("Candidato 1 = " + totalVotosCandidato1);
-                    console.log("Candidato 2 = " + totalVotosCandidato2);
-                    console.log("Candidato 3 = " + totalVotosCandidato3);
-                    console.log("Voto em Branco = " + totalVotosEmBranco);
-                    console.log("Voto Nulo = " + totalVotosNulo);
+                        break;
+                        return;
 
+                    
+                        
+                 
+
+                    
+                  
+                                    
+            
+                   
+                }
                     const totalVotos = (totalVotosCandidato1+totalVotosCandidato2+totalVotosCandidato3+totalVotosEmBranco+totalVotosNulo);
                     
                     
-                    document.getElementById("resultado").innerHTML = "Total de votos Válidos " + totalVotos;
-                    document.getElementById("resultado1").innerHTML = nomeDoCandidato1 + " = " + totalVotosCandidato1 + " Votos que representa " + (totalVotosCandidato1/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado2").innerHTML = nomeDoCandidato2 + " = " + totalVotosCandidato2 + " Votos que representa " + (totalVotosCandidato2/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado3").innerHTML = nomeDoCandidato3 + " = " + totalVotosCandidato3 + " Votos que representa " + (totalVotosCandidato3/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado4").innerHTML = "Votos Branco = " + totalVotosEmBranco + " Votos que representa " + (totalVotosEmBranco/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado5").innerHTML = "Votos Nulo = " + totalVotosNulo + " Votos que representa " +(totalVotosNulo/totalVotos*100).toFixed(2) + "% dos votos";
+                        document.getElementById("resultado").innerHTML = "Total de votos Válidos " + totalVotos;
+                        document.getElementById("resultado1").innerHTML = nomeDoCandidato1 + " = " + totalVotosCandidato1 + " Votos que representa " + (totalVotosCandidato1/totalVotos*100).toFixed(2) + "% dos votos";
+                        document.getElementById("resultado2").innerHTML = nomeDoCandidato2 + " = " + totalVotosCandidato2 + " Votos que representa " + (totalVotosCandidato2/totalVotos*100).toFixed(2) + "% dos votos";
+                        document.getElementById("resultado3").innerHTML = nomeDoCandidato3 + " = " + totalVotosCandidato3 + " Votos que representa " + (totalVotosCandidato3/totalVotos*100).toFixed(2) + "% dos votos";
+                        document.getElementById("resultado4").innerHTML = "Votos Branco = " + totalVotosEmBranco + " Votos que representa " + (totalVotosEmBranco/totalVotos*100).toFixed(2) + "% dos votos";
+                        document.getElementById("resultado5").innerHTML = "Votos Nulo = " + totalVotosNulo + " Votos que representa " +(totalVotosNulo/totalVotos*100).toFixed(2) + "% dos votos";
+                        
+                        
+                  
                     
+        }while(resposta = false);
+       
                     
                    dataHoraFinal();
-                    
-                                    
-                    break;
-                   
-                }
-        }while(voto != 123);
 
 
+        verificaUrnaAtual();
         
         
                     
