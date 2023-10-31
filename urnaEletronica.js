@@ -39,6 +39,9 @@ let
             totalVotosCandidato3 = 0,
             totalVotosEmBranco = 0,
             senhaMesario = 0,
+            nomeGanhador,
+            votosGanhador,
+            ganhador,
             totalVotosNulo = 0;
     
 function urnaEletronica() {
@@ -93,45 +96,51 @@ function urnaEletronica() {
                     break;
                                                      
                     default: 
-                    if  (confirm("Seu voto será anulado!")) {
-                        totalVotosNulo++;
-                        console.log("Voto Nulo = " + totalVotosNulo);
-                        
-                    } else {
-                        voto = parseInt(prompt("Digite o seu voto novamente :"));
-                    break;
-                    }
-
+                    (confirm("Seu voto será anulado!")) 
+                    totalVotosNulo++;
+                    console.log("Voto Nulo = " + totalVotosNulo);
+                    break;    
                     
-                    
-
-                                    
-
-                    const totalVotos = (totalVotosCandidato1+totalVotosCandidato2+totalVotosCandidato3+totalVotosEmBranco+totalVotosNulo);
-                                        
-                    document.getElementById("resultado").innerHTML = "Total de votos Válidos " + totalVotos;
-                    document.getElementById("resultado1").innerHTML = nomeDoCandidato1 + " = " + totalVotosCandidato1 + " Votos que representa " + (totalVotosCandidato1/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado2").innerHTML = nomeDoCandidato2 + " = " + totalVotosCandidato2 + " Votos que representa " + (totalVotosCandidato2/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado3").innerHTML = nomeDoCandidato3 + " = " + totalVotosCandidato3 + " Votos que representa " + (totalVotosCandidato3/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado4").innerHTML = "Votos Branco = " + totalVotosEmBranco + " Votos que representa " + (totalVotosEmBranco/totalVotos*100).toFixed(2) + "% dos votos";
-                    document.getElementById("resultado5").innerHTML = "Votos Nulo = " + totalVotosNulo + " Votos que representa " +(totalVotosNulo/totalVotos*100).toFixed(2) + "% dos votos";
-                    
-                    dataHoraFinal();
-                    verificaUrnaAtual();     
-                    break;
                 }
-
-                                 
-                
-
                     
            
                    
         }while(voto !== senhaMesario);
         
-  
-                   
-}
+        const totalVotos = (totalVotosCandidato1+totalVotosCandidato2+totalVotosCandidato3+totalVotosEmBranco+totalVotosNulo);
+                                        
+        document.getElementById("resultado").innerHTML = "Total de votos Válidos " + totalVotos;
+        document.getElementById("resultado1").innerHTML = nomeDoCandidato1 + " = " + totalVotosCandidato1 + " Votos que representa " + (totalVotosCandidato1/totalVotos*100).toFixed(2) + "% dos votos";
+        document.getElementById("resultado2").innerHTML = nomeDoCandidato2 + " = " + totalVotosCandidato2 + " Votos que representa " + (totalVotosCandidato2/totalVotos*100).toFixed(2) + "% dos votos";
+        document.getElementById("resultado3").innerHTML = nomeDoCandidato3 + " = " + totalVotosCandidato3 + " Votos que representa " + (totalVotosCandidato3/totalVotos*100).toFixed(2) + "% dos votos";
+        document.getElementById("resultado4").innerHTML = "Votos Branco = " + totalVotosEmBranco + " Votos que representa " + (totalVotosEmBranco/totalVotos*100).toFixed(2) + "% dos votos";
+        document.getElementById("resultado5").innerHTML = "Votos Nulo = " + totalVotosNulo + " Votos que representa " +(totalVotosNulo/totalVotos*100).toFixed(2) + "% dos votos";
+        
+        dataHoraFinal();
+        verificaUrnaAtual();
+        
+        // DETERMINAÇÃO DO GANHADOR
+        if(totalVotosCandidato1 > totalVotosCandidato2 && totalVotosCandidato1 > totalVotosCandidato3) {
+            nomeGanhador = nomeDoCandidato1;
+            votosGanhador = totalVotosCandidato1 + totalVotosEmBranco;
+
+        } else if (totalVotosCandidato2 > totalVotosCandidato1 && totalVotosCandidato2 > totalVotosCandidato3) {
+            nomeGanhador = nomeDoCandidato2;
+            votosGanhador = totalVotosCandidato2 + totalVotosEmBranco;
+        } else if (totalVotosCandidato3 > totalVotosCandidato1 && totalVotosCandidato3 > totalVotosCandidato2) {
+            nomeGanhador = nomeDoCandidato3;
+            votosGanhador = totalVotosCandidato3 + totalVotosEmBranco;
+        } else {
+            ganhador = false;
+        }
+
+        if (ganhador = true) {
+            document.getElementById("ganhadorTrue").innerHTML = `O ganhador desta Urna foi o candidato ${nomeGanhador} com ${votosGanhador} voto(s)(votos do candidato + votos branco(s) ${(votosGanhador / totalVotos * 100).toFixed(2)}%)`;
+        } else {
+            document.getElementById("ganhadorFalse").innerHTML = `Não houve ganhador`
+        }
+
+    }
 
                 
                     
