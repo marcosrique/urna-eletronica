@@ -32,7 +32,7 @@ function verificaUrnaAtual(){
         });
 }
 
-let
+        let
             voto,
             totalVotosCandidato1 = 0,
             totalVotosCandidato2 = 0,

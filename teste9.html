@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Implementação da urna com matriz bidimencional
+    
+
+       
+    
+        let voto = 0;
+
+
+        
+        
+        // Exibir candidatos
+
+        function gerar(){
+            let nomes = [
+            [10, "  Jesus"],
+            [11, "  Pedro"]
+            ];
+            let lista = document.getElementById('lista');
+            for(var i = 0; i < nomes.length; i++){
+                let item = document.createElement('li');
+                item.appendChild(document.createTextNode(nomes[i]));
+                lista.appendChild(item);
+            }
+        }
+
+        
+
+
+
+
+function urnaTeste () {
+
+    voto = parseInt(prompt("Digite o seu voto : "));
+
+    
+    
+    console.table(candidatos);
+    document.getElementById("relCandidatos").innerHTML = table(candidatos);
+
+    
+}
+       
+        
+        </script>
+        
+</head>
+<body>
+    <ul id="lista"></ul>
+    <input type="button" onclick="gerar()" value="Clique">
+
+</body>
+</html>
+
+
+
+
+
+
