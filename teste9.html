@@ -28,24 +28,43 @@
                 item.appendChild(document.createTextNode(nomes[i]));
                 lista.appendChild(item);
             }
+          
         }
 
         
 
+        
+let candidato = [
+    [10, " Severino"],
+    [20, " Carlos Roberto"],
+    [30, " Sandoval"],
+    [40, " James Rodriguez"],
+    [50, " Voto em Branco"]
+];
 
 
 
 function urnaTeste () {
 
-    voto = parseInt(prompt("Digite o seu voto : "));
+   let voto = parseInt(prompt("Digite o seu voto : "));
+   for (let i = 0; i < candidato.length; i++) {
+    switch (voto) {
+        
+        case 10:
+            candidato[0]
+    
+   }
 
     
     
-    console.table(candidatos);
-    document.getElementById("relCandidatos").innerHTML = table(candidatos);
+  
+    
 
     
 }
+
+
+document.getElementById("relCandidatos").innerHTML = gerar();
        
         
         </script>
@@ -54,6 +73,8 @@ function urnaTeste () {
 <body>
     <ul id="lista"></ul>
     <input type="button" onclick="gerar()" value="Clique">
+
+
 
 </body>
 </html>
